@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'Jost';
+    src: url('./assets/fonts/Jost-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Jost-Bold';
+    src: url('./assets/fonts/Jost-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Lobster';
+    src: url('./assets/fonts/Lobster-Regular.ttf') format('truetype');
+}
+
+html {
+    font-family: 'Jost';
+    font-size: 18px;
+    background-color: #FAFAFA;
+    color: #444;
+}
+
+b {
+    font-family: 'Jost-Bold';
+}
+
+.form_container {
+    width: 100%;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.form_container > label {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.form_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_item > input {
+    width: 30%;
+}
+
+.container {
+    padding: 0 24px;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    display: block;
+    /* margin-top: 24px; */
+}
+
+input[type=text] {
+    height: 60px;
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+}
+
+input::-webkit-input-placeholder {
+    opacity: 0.5;
+}
+
+button {
+    cursor: pointer;
+    width: 100%;
+    border-radius: 16px;
+    background-color: #FBA8AA;
+    color: #FAFAFA;
+    padding: 8px 16px;
+    margin-top: 24px;
+    height: 60px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.input_container {
+    border: 1px solid #AAA;
+    width: 600px;
+    height: 600px;
+    background-image: url('./assets/images/bg.jpg');
+    background-size: cover;
+    position: relative;
+}
+
+.input_image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60%;
+    padding-top: 24px;
+    padding-right: 8px;
+}
+
+.input_image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.input_wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    padding: 24px;
+}
+
+.name_container {
+    font-family: 'Lobster';
+    font-size: 28px;
+    text-align: right;
+    color: #666;
+    letter-spacing: 3px;
+}
+
+.data_container {
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.data_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.data_container > .data_item {
+    padding: 12px;
+}
+
+.data_container > .data_item:first-child {
+    padding-left: 0;
+    border-right: 2px solid #666;
+}
+
+.data_container > .data_item:last-child {
+    padding-right: 0;
+}
+
+.data_item > * {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.data_item > .title {
+    font-family: 'Jost-Bold';
+    color: #666;
+    font-size: 18px;
+}
+
+.data_item > .value {
+    color: #666;
+}
+
+.note_container {
+    margin-top: 48px;
+}
+
+.note {
+    color: #666;
+    text-align: right;
+    font-size: 16px;
+}

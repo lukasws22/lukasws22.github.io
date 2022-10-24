@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Size Image Generator</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./html2canvas.min.js"></script>
+</head>
+<body>
+
+    <div class="form_container">
+
+        <h1>Form</h1>
+
+        <label>Name</label>
+        <div class="form_item">
+            <input type="text" id="nameInput" oninput="triggerChange()" placeholder="Wonderful Dress" />
+        </div>
+
+        <label>File Name</label>
+        <div class="form_item">
+            <input type="text" id="fileNameInput" placeholder="download.jpg" />
+        </div>
+
+        <label>Size</label>
+        <div class="form_item">
+            <input type="text" id="sizeInput1" oninput="triggerChange()" placeholder="All Size" />
+            <input type="text" id="sizeInput2" oninput="triggerChange()" placeholder="All Size" />
+            <input type="text" id="sizeInput3" oninput="triggerChange()" placeholder="All Size" />
+        </div>
+
+        <label>Bust / Lingkar Dada (cm)</label>
+        <div class="form_item">
+            <input type="text" id="bustInput1" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="bustInput2" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="bustInput3" oninput="triggerChange()" placeholder="0" />
+        </div>
+    
+        <label>Shoulder / Lebar Bahu (cm)</label>
+        <div class="form_item">
+            <input type="text" id="shoulderInput1" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="shoulderInput2" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="shoulderInput3" oninput="triggerChange()" placeholder="0" />
+        </div>
+    
+        <label>Length / Panjang (cm)</label>
+        <div class="form_item">
+            <input type="text" id="lengthInput1" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="lengthInput2" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="lengthInput3" oninput="triggerChange()" placeholder="0" />
+        </div>
+    
+        <label>Waist / Lebar Pinggang (cm)</label>
+        <div class="form_item">
+            <input type="text" id="waistInput1" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="waistInput2" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="waistInput3" oninput="triggerChange()" placeholder="0" />
+        </div>
+
+        <label>Sleeve / Panjang Tangan (cm)</label>
+        <div class="form_item">
+            <input type="text" id="sleeveInput1" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="sleeveInput2" oninput="triggerChange()" placeholder="0" />
+            <input type="text" id="sleeveInput3" oninput="triggerChange()" placeholder="0" />
+        </div>
+        
+    </div>
+
+    <div class="container">
+
+        <button onclick="generate()">Generate</button>
+
+        <br />
+        <br />
+        <br />
+
+        <div class="input_container">
+
+            <div class="input_image">
+                <img src="./assets/images/fashion.png" />
+            </div>
+
+            <div class="input_wrapper">
+                
+                <div class="name_container" id="nameOutput"></div>
+
+                <div class="data_container">
+                    <div class="data_item">
+                        <label class="title">Size</label>
+                        <label class="value" id="sizeOutput1">All Size</label>
+                        <label class="value" id="sizeOutput2">All Size</label>
+                        <label class="value" id="sizeOutput3">All Size</label>
+                    </div>
+                    <div class="data_item">
+                        <label class="title">Bust</label>
+                        <label class="value" id="bustOutput1"></label>
+                        <label class="value" id="bustOutput2"></label>
+                        <label class="value" id="bustOutput3"></label>
+                    </div>
+                    <div class="data_item">
+                        <label class="title">Shoulder</label>
+                        <label class="value" id="shoulderOutput1"></label>
+                        <label class="value" id="shoulderOutput2"></label>
+                        <label class="value" id="shoulderOutput3"></label>
+                    </div>
+                    <div class="data_item">
+                        <label class="title">Length</label>
+                        <label class="value" id="lengthOutput1"></label>
+                        <label class="value" id="lengthOutput2"></label>
+                        <label class="value" id="lengthOutput3"></label>
+                    </div>
+                    <div class="data_item">
+                        <label class="title">Waist</label>
+                        <label class="value" id="waistOutput1"></label>
+                        <label class="value" id="waistOutput2"></label>
+                        <label class="value" id="waistOutput3"></label>
+                    </div>
+                    <div class="data_item">
+                        <label class="title">Sleeve</label>
+                        <label class="value" id="sleeveOutput1"></label>
+                        <label class="value" id="sleeveOutput2"></label>
+                        <label class="value" id="sleeveOutput3"></label>
+                    </div>
+                </div>
+
+                <div class="note_container">
+                    <div class="note">
+                        *Please allow 2-3 cm differences due to manual measurement
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <canvas class="canvas"></canvas>
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            document.getElementById('nameOutput').style.display = 'none'
+
+            document.getElementById('sizeOutput1').style.display = 'none'
+            document.getElementById('sizeOutput2').style.display = 'none'
+            document.getElementById('sizeOutput3').style.display = 'none'
+
+            document.getElementById('bustOutput1').style.display = 'none'
+            document.getElementById('bustOutput2').style.display = 'none'
+            document.getElementById('bustOutput3').style.display = 'none'
+
+            document.getElementById('shoulderOutput1').style.display = 'none'
+            document.getElementById('shoulderOutput2').style.display = 'none'
+            document.getElementById('shoulderOutput3').style.display = 'none'
+
+            document.getElementById('lengthOutput1').style.display = 'none'
+            document.getElementById('lengthOutput2').style.display = 'none'
+            document.getElementById('lengthOutput3').style.display = 'none'
+
+            document.getElementById('waistOutput1').style.display = 'none'
+            document.getElementById('waistOutput2').style.display = 'none'
+            document.getElementById('waistOutput3').style.display = 'none'
+
+            document.getElementById('sleeveOutput1').style.display = 'none'
+            document.getElementById('sleeveOutput2').style.display = 'none'
+            document.getElementById('sleeveOutput3').style.display = 'none'
+        }
+
+        function triggerChange() {
+            document.getElementById('nameOutput').innerHTML = document.getElementById('nameInput').value
+
+            document.getElementById('sizeOutput1').innerHTML = document.getElementById('sizeInput1').value
+            document.getElementById('sizeOutput2').innerHTML = document.getElementById('sizeInput2').value
+            document.getElementById('sizeOutput3').innerHTML = document.getElementById('sizeInput3').value
+
+            document.getElementById('bustOutput1').innerHTML = document.getElementById('bustInput1').value
+            document.getElementById('bustOutput2').innerHTML = document.getElementById('bustInput2').value
+            document.getElementById('bustOutput3').innerHTML = document.getElementById('bustInput3').value
+
+            document.getElementById('shoulderOutput1').innerHTML = document.getElementById('shoulderInput1').value
+            document.getElementById('shoulderOutput2').innerHTML = document.getElementById('shoulderInput2').value
+            document.getElementById('shoulderOutput3').innerHTML = document.getElementById('shoulderInput3').value
+
+            document.getElementById('lengthOutput1').innerHTML = document.getElementById('lengthInput1').value
+            document.getElementById('lengthOutput2').innerHTML = document.getElementById('lengthInput2').value
+            document.getElementById('lengthOutput3').innerHTML = document.getElementById('lengthInput3').value
+
+            document.getElementById('waistOutput1').innerHTML = document.getElementById('waistInput1').value
+            document.getElementById('waistOutput2').innerHTML = document.getElementById('waistInput2').value
+            document.getElementById('waistOutput3').innerHTML = document.getElementById('waistInput3').value
+
+            document.getElementById('sleeveOutput1').innerHTML = document.getElementById('sleeveInput1').value
+            document.getElementById('sleeveOutput2').innerHTML = document.getElementById('sleeveInput2').value
+            document.getElementById('sleeveOutput3').innerHTML = document.getElementById('sleeveInput3').value
+            
+            
+            
+            // Visibility
+
+            document.getElementById('nameOutput').style.display = document.getElementById('nameInput').value.length > 0 ? 'block' : 'none'
+
+            document.getElementById('sizeOutput1').style.display = document.getElementById('sizeInput1').value.length > 0 ? 'block' : 'none'
+            document.getElementById('sizeOutput2').style.display = document.getElementById('sizeInput2').value.length > 0 ? 'block' : 'none'
+            document.getElementById('sizeOutput3').style.display = document.getElementById('sizeInput3').value.length > 0 ? 'block' : 'none'
+
+            document.getElementById('bustOutput1').style.display = document.getElementById('bustInput1').value.length > 0 ? 'block' : 'none'
+            document.getElementById('bustOutput2').style.display = document.getElementById('bustInput2').value.length > 0 ? 'block' : 'none'
+            document.getElementById('bustOutput3').style.display = document.getElementById('bustInput3').value.length > 0 ? 'block' : 'none'
+
+            document.getElementById('shoulderOutput1').style.display = document.getElementById('shoulderInput1').value.length > 0 ? 'block' : 'none'
+            document.getElementById('shoulderOutput2').style.display = document.getElementById('shoulderInput2').value.length > 0 ? 'block' : 'none'
+            document.getElementById('shoulderOutput3').style.display = document.getElementById('shoulderInput3').value.length > 0 ? 'block' : 'none'
+
+            document.getElementById('lengthOutput1').style.display = document.getElementById('lengthInput1').value.length > 0 ? 'block' : 'none'
+            document.getElementById('lengthOutput2').style.display = document.getElementById('lengthInput2').value.length > 0 ? 'block' : 'none'
+            document.getElementById('lengthOutput3').style.display = document.getElementById('lengthInput3').value.length > 0 ? 'block' : 'none'
+
+            document.getElementById('waistOutput1').style.display = document.getElementById('waistInput1').value.length > 0 ? 'block' : 'none'
+            document.getElementById('waistOutput2').style.display = document.getElementById('waistInput2').value.length > 0 ? 'block' : 'none'
+            document.getElementById('waistOutput3').style.display = document.getElementById('waistInput3').value.length > 0 ? 'block' : 'none'
+
+            document.getElementById('sleeveOutput1').style.display = document.getElementById('sleeveInput1').value.length > 0 ? 'block' : 'none'
+            document.getElementById('sleeveOutput2').style.display = document.getElementById('sleeveInput2').value.length > 0 ? 'block' : 'none'
+            document.getElementById('sleeveOutput3').style.display = document.getElementById('sleeveInput3').value.length > 0 ? 'block' : 'none'
+        }
+
+        function generate() {
+            let inputElement = document.querySelector('.input')
+            inputElement.style.display = 'flex'
+
+            html2canvas(inputElement).then(canvas => {
+                document.querySelector('canvas').replaceWith(canvas)
+
+                let fileName = document.getElementById('fileNameInput').value
+                if (fileName.length == 0) {
+                    if (document.getElementById('nameInput').value.length > 0) {
+                        fileName = document.getElementById('nameInput').value + '.jpg'
+                    } else {
+                        fileName = 'download.jpg'
+                    }
+                }
+
+                save(canvas, fileName)
+            })
+
+        }
+
+        function save(canvas, fileName) {
+            const link = document.createElement('a')
+            link.download = fileName
+            link.href = canvas.toDataURL()
+            link.click()
+            link.delete
+            canvas.style.display = 'none'
+        }
+    </script>
+
+</body>
+</html>
