@@ -25,7 +25,7 @@
             <input type="text" id="fileNameInput" placeholder="download.jpg" />
         </div>
 
-        <label>Size</label>
+        <label>Size (S, M, L, All Size)</label>
         <div class="form_item">
             <input type="text" id="sizeInput1" oninput="triggerChange()" placeholder="All Size" />
             <input type="text" id="sizeInput2" oninput="triggerChange()" placeholder="All Size" />
@@ -239,7 +239,7 @@
                     if (document.getElementById('nameInput').value.length > 0) {
                         fileName = document.getElementById('nameInput').value + '.jpg'
                     } else {
-                        fileName = 'download.jpg'
+                        fileName = 'download' + '.jpg'
                     }
                 }
 

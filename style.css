@@ -57,7 +57,6 @@ b {
 
 label {
     display: block;
-    /* margin-top: 24px; */
 }
 
 input[type=text] {
@@ -86,7 +85,6 @@ button {
 }
 
 .input_container {
-    border: 1px solid #AAA;
     width: 600px;
     height: 600px;
     background-image: url('./assets/images/bg.jpg');
